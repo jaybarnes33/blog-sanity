@@ -10,6 +10,7 @@ export default defineCliConfig({
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/cli#auto-updates
      */
+     appId: 'ri8dd1chx9pvq3fncuftooav',
     autoUpdates: true,
   }
 })
