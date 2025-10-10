@@ -1,24 +1,26 @@
-import { defineType } from "sanity";
+import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "journalIssue",
   title: "Journal Issue",
   type: "document",
   fields: [
-    {
+    defineField({
       name: "title",
       title: "Issue Title",
       type: "string",
       placeholder: "e.g. Urban Voices",
       validation: (Rule) => Rule.required(),
-    },
-    {
+    }),
+
+    defineField({
       name: "issueNumber",
       title: "Issue Number",
       type: "number",
       validation: (Rule) => Rule.required().min(1),
-    },
-    {
+    }),
+
+    defineField({
       name: "month",
       title: "Month",
       type: "string",
@@ -39,20 +41,41 @@ export default defineType({
         ],
       },
       validation: (Rule) => Rule.required(),
-    },
-    {
+    }),
+
+    defineField({
       name: "year",
       title: "Year",
       type: "number",
       validation: (Rule) => Rule.required().min(2020).max(2030),
-    },
-    {
+    }),
+
+  
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: (doc) =>
+          `issue-${doc.issueNumber}-${doc.title || doc.month + "-" + doc.year}`,
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-]+/g, "")
+            .slice(0, 96),
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "description",
       title: "Issue Description",
       type: "text",
       rows: 3,
-    },
-    {
+    }),
+
+    defineField({
       name: "coverImage",
       title: "Cover Image",
       type: "image",
@@ -66,21 +89,24 @@ export default defineType({
           title: "Alternative Text",
         },
       ],
-    },
-    {
+    }),
+
+    defineField({
       name: "featured",
       title: "Featured Issue",
       type: "boolean",
       description: "Mark this issue as featured",
-    },
-    {
+    }),
+
+    defineField({
       name: "published",
       title: "Published",
       type: "boolean",
       description: "Set to published when ready to show publicly",
       initialValue: true,
-    },
+    }),
   ],
+
   preview: {
     select: {
       title: "title",
@@ -94,11 +120,12 @@ export default defineType({
       const { title, issueNumber, month, year, media, published } = selection;
       return {
         title: `Issue ${issueNumber} - ${title}`,
-        subtitle: `${month} ${year} ${published ? '' : '(Draft)'}`,
+        subtitle: `${month} ${year} ${published ? "" : "(Draft)"}`,
         media,
       };
     },
   },
+
   orderings: [
     {
       title: "Issue Number (newest first)",

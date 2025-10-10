@@ -1,21 +1,36 @@
-import { defineType } from "sanity";
+import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "blog",
   title: "Blog",
   type: "document",
   fields: [
-    {
+    defineField({
       name: "title",
       title: "Title",
       type: "string",
-    },
-    {
+      validation: (Rule) => Rule.required(),
+    }),
+
+    // 👇 Slug field added here
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title", // auto-generates from title
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "excerpt",
       title: "Excerpt",
       type: "text",
-    },
-    {
+    }),
+
+    defineField({
       name: "body",
       title: "Body",
       type: "array",
@@ -45,44 +60,21 @@ export default defineType({
                 title: "URL",
                 name: "link",
                 type: "object",
-                fields: [
-                  {
-                    title: "URL",
-                    name: "href",
-                    type: "url",
-                  },
-                ],
+                fields: [{ title: "URL", name: "href", type: "url" }],
               },
             ],
           },
         },
-        {
-          type: "image",
-          options: { hotspot: true },
-        },
+        { type: "image", options: { hotspot: true } },
       ],
-    },
-    {
-      name: "author",
-      title: "Author",
-      type: "string",
-    },
-    {
-      name: "authorRole",
-      title: "Author Role",
-      type: "string",
-    },
-    {
-      name: "publishDate",
-      title: "Publish Date",
-      type: "date",
-    },
-    {
-      name: "readTime",
-      title: "Read Time",
-      type: "string",
-    },
-    {
+    }),
+
+    defineField({ name: "author", title: "Author", type: "string" }),
+    defineField({ name: "authorRole", title: "Author Role", type: "string" }),
+    defineField({ name: "publishDate", title: "Publish Date", type: "date" }),
+    defineField({ name: "readTime", title: "Read Time", type: "string" }),
+
+    defineField({
       name: "category",
       title: "Category",
       type: "string",
@@ -97,39 +89,40 @@ export default defineType({
         ],
         layout: "dropdown",
       },
-    },
-    {
+    }),
+
+    defineField({
       name: "tags",
       title: "Tags",
       type: "array",
       of: [{ type: "string" }],
-    },
-    {
-      name: "featured",
-      title: "Featured",
-      type: "boolean",
-    },
-    {
+    }),
+
+    defineField({ name: "featured", title: "Featured", type: "boolean" }),
+
+    defineField({
       name: "image",
       title: "Featured Image",
       type: "image",
       options: { hotspot: true },
-    },
-    {
+    }),
+
+    defineField({
       name: "views",
       title: "Views",
       type: "number",
       initialValue: 0,
       readOnly: true,
       description: "Total number of views (auto-updated)",
-    },
-    {
+    }),
+
+    defineField({
       name: "likes",
       title: "Likes",
       type: "number",
       initialValue: 0,
       readOnly: true,
       description: "Total number of likes (auto-updated)",
-    }
+    }),
   ],
 });
