@@ -33,6 +33,15 @@ export const awards = defineType({
       validation: (Rule) => Rule.required().min(10),
     }),
     defineField({
+      name: 'submissionURL',
+      title: 'Submission URL',
+      type: 'url',
+      validation: (Rule) =>
+        Rule.required().uri({
+          scheme: ['http', 'https'],
+        }),
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
