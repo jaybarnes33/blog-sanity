@@ -139,6 +139,14 @@ export default defineType({
       title: 'Publish Date',
       type: 'date',
     }),
+    defineField({
+      name: 'likes',
+      title: 'Likes',
+      type: 'number',
+      initialValue: 0,
+      readOnly: true,
+      description: 'Total number of likes (auto-updated)',
+    }),
   ],
 
   preview: {
