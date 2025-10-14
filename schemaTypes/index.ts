@@ -7,10 +7,11 @@ import event from './event'
 import fundingOpportunity from './fundingOpportunity'
 import journal from './journal'
 import learningResource from './learningResource'
-import submission from './submission'
 import journalWork from './journalWork'
 import {subscriber} from './subscriber'
 import tool from './tool'
+import submissionUrl from './submissionUrl'
+import volunteer from './volunteer'
 
 export const schemaTypes = [
   blog,
@@ -21,10 +22,11 @@ export const schemaTypes = [
   learningResource,
   journalWork,
   CommunityResource,
-  submission,
   contactSubmission,
   partnershipProposal,
   awards,
   subscriber,
   comment,
+  submissionUrl,
+  volunteer,
 ]
