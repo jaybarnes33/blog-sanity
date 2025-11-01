@@ -12,6 +12,7 @@ export default defineType({
       placeholder: 'e.g. Urban Voices',
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'body',
       title: 'Body',

@@ -46,6 +46,7 @@ export default defineType({
           {title: 'Photography', value: 'Photography'},
           {title: 'Poetry', value: 'Poetry'},
           {title: 'Art', value: 'Art'},
+          {title: 'Editorial', value: 'Editorial'},
         ],
         layout: 'dropdown',
       },
