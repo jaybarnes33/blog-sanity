@@ -80,7 +80,6 @@ export const awards = defineType({
       title: 'Winners Announcement',
       type: 'reference',
       to: [{type: 'blog'}],
-      validation: (Rule) => Rule.required(),
       description: 'Reference to the post with winners announcement about the award',
     }),
     defineField({
