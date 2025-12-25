@@ -15,10 +15,10 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/vision": "^4.12.0",
-    "react": "^19.1",
-    "react-dom": "^19.1",
-    "sanity": "^4.12.0",
+    "@sanity/vision": "^4.20.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sanity": "^4.20.3",
     "sanity-plugin-asset-source-unsplash": "^4.0.1",
     "styled-components": "^6.1.18"
   },

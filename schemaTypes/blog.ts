@@ -25,6 +25,21 @@ export default defineType({
     }),
 
     defineField({
+      name: 'type',
+      title: 'Type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Article', value: 'article'},
+          {title: 'Poem', value: 'poem'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'article',
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
