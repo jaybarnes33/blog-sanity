@@ -47,6 +47,7 @@ export default defineType({
           {title: 'Poetry', value: 'Poetry'},
           {title: 'Art', value: 'Art'},
           {title: 'Editorial', value: 'Editorial'},
+          {title: 'Drama / Hybrid Fiction', value: 'Drama / Hybrid Fiction'},
         ],
         layout: 'dropdown',
       },
